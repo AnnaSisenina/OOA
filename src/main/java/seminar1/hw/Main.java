@@ -9,47 +9,55 @@ package seminar1.hw;
 
         Всё вышеуказанное создать согласно принципам ООП, пройденным на семинаре */
 
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Product shampoo = new Product("Шампунь", 150, 8);
-        Product showerGel = new Product("Гель для душа", 100, 7);
-        Product soap = new Product("Жидкое мыло", 50, 6);
+        //Создаю категории
+        Category cosmetics = new Category("Косметика");
+        Category food = new Category("Продукты");
+        List<Category>categories = new ArrayList<>();
+        categories.add(cosmetics);
+        categories.add(food);
 
-        Product milk = new Product("Молоко", 80, 9);
-        Product water = new Product("Вода", 20, 6);
-        Product cheese = new Product("Сыр", 170, 12);
+        //Создаю продукты
+        Shampoo shampoo = new Shampoo("Шампунь Ellseve", 150, 8, cosmetics);
+        ShowerGel showerGel = new ShowerGel("Гель для душа Palmolive", 100, 7, cosmetics);
+        Milk milk = new Milk("Молоко Домик в деревне", 80, 9, food);
+        Water water = new Water("Вода Святой источник", 20, 6,  food);
 
-        HashMap<Product, Integer> categoryCosmetics = new HashMap<>();
-        categoryCosmetics.put(shampoo, 12);
-        categoryCosmetics.put(showerGel, 7);
-        categoryCosmetics.put(soap, 5);
-        Category cosmetics = new Category("cosmetics", categoryCosmetics);
+        //Создаю складские позиции магазина, добавляю туда продукты и их кол-во
+        StockItem first = new StockItem(shampoo, 15);
+        StockItem second = new StockItem(showerGel, 11);
+        StockItem third = new StockItem(milk, 20);
+        StockItem fourth = new StockItem(water, 30);
 
-        HashMap<Product, Integer> categoryFood = new HashMap<>();
-        categoryFood.put(milk, 20);
-        categoryFood.put(water, 30);
-        categoryFood.put(cheese, 10);
-        Category food = new Category( "food", categoryFood);
+        // Создаю запасы магазина
+        List<StockItem> stock = new ArrayList<>();
+        stock.add(first);
+        stock.add(second);
+        stock.add(third);
+        stock.add(fourth);
+        Stock shopStock = new Stock(stock);
 
-        HashSet<Category> x5Catalog = new HashSet<>();
-        x5Catalog.add(food);
-        x5Catalog.add(cosmetics);
-
-        Shop x5 = new Shop("Пятерочка",x5Catalog);
-        x5.printShopCatalog();
-
-        x5.deleteProductFromCatalog(food, milk, 2);
-        x5.printShopCatalog();
-
+        //создание нового пользователя
         User ivan = new User("Ivan", new char[]{'1', '2', '3', '4'});
-        HashMap<Product, Integer> ivanWantsToBuy = new HashMap<>();
-        Basket ivansBasket = new Basket(ivan, ivanWantsToBuy);
-        ivansBasket.addToCart(milk, 20, x5, food);
+        List<BuyItem> buyItems = new ArrayList<>();
+        //создание корзины пользователя
+        Cart ivanCart = new Cart(buyItems, ivan);
+        //создание перечня корзин магазина
+        List <Cart> carts = new ArrayList<>();
+        carts.add(ivanCart);
+        //создание магазина
+        Shop x5 = new Shop("Пятерочка", shopStock, carts, categories);
         x5.printShopCatalog();
-
+        System.out.println();
+        x5.buy(ivanCart, shampoo, 4);
+        System.out.println();
+        x5.printShopCatalog();
+        System.out.println();
+        ivanCart.printCart();
 
     }
 }

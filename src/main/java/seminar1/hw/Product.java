@@ -10,10 +10,12 @@ public class Product {
     private String name;
     private int price;
     private int rate;
+    private Category category;
 
-    public Product(String name, int price, int rate) {
+    public Product(String name, int price, int rate, Category category) {
         this.name = name;
         this.price = price;
+        this.category = category;
         if (rate > 10) {
             this.rate = 10;
         }
@@ -45,7 +47,12 @@ public class Product {
     public void setRate(int rate) {
         this.rate = rate;
     }
-
+    public Category getCategory() {
+        return category;
+    }
+    public void setCategory(Category category) {
+        this.category = category;
+    }
     @Override
     public String toString() {
         return "Продукт{" +
