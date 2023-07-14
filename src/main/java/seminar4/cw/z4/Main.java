@@ -14,7 +14,7 @@ public class Main {
         System.out.println("box1.compareAverage(box2) = " + box1.compareAverage(box2));
         */
         /*
-        Calculat calculat = new Calculat();
+        CalculateSum calculat = new CalculateSum();
         List<Integer> listInt = new ArrayList<>();
         List<Double> listDoub = new ArrayList<>();
         List<Number> listNumber = new ArrayList<>();
