@@ -2,7 +2,7 @@ package seminar5.hw.service;
 
 public class CalculateBinaryConversion {
     public String BinaryConversion(String decimalNumber) {
-        String binaryNumber = null;
+        String binaryNumber;
         double exponent = 0.0;
         int mantissa = 0;
         int length = decimalNumber.length();
@@ -11,7 +11,6 @@ public class CalculateBinaryConversion {
         while (i < length && !ifMantissa) {
             if (decimalNumber.charAt(i) == '.') {
                 ifMantissa = true;
-                i++;
             } else {
                 mantissa = mantissa * 10 + Character.getNumericValue(decimalNumber.charAt(i));
                 i++;
@@ -24,9 +23,9 @@ public class CalculateBinaryConversion {
             j++;
         }
         if (exponent == 0.0)
-            binaryNumber = mantissaToBinary(mantissa) + ".0";
+            binaryNumber = mantissaToBinary(mantissa) + ".0(b)";
         else
-            binaryNumber = mantissaToBinary(mantissa) + exponentToBinary(exponent);
+            binaryNumber = mantissaToBinary(mantissa) + exponentToBinary(exponent) + "(b)";
         return binaryNumber;
     }
 
