@@ -1,4 +1,7 @@
 package seminar6.hw.service;
 
-public interface Multiply {
+import java.util.List;
+
+public interface Multiply <T extends CalculationNumber>{
+    T multiply(List<T> numbers);
 }

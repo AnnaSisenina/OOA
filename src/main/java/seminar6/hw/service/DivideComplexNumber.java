@@ -5,13 +5,13 @@ import java.util.List;
 // Был общий класс CalculateDivide, который содержал методы для деления вещественных, рациональных и комплексных чисел.
 // Разделила его на три отдельных класса, каждый класс отвечает за деление одного типа.
 
-public class DivideComplexNumber implements Divide{
-    public ComplexNumber divideComplex(List<ComplexNumber> complexNumbers) {
-        double validPart = (complexNumbers.get(0).validPart * complexNumbers.get(1).validPart + complexNumbers.get(0).imagePart * complexNumbers.get(1).imagePart) /
-                (complexNumbers.get(1).validPart * complexNumbers.get(1).validPart + complexNumbers.get(1).imagePart * complexNumbers.get(1).imagePart);
-        double imagePart = (complexNumbers.get(0).imagePart * complexNumbers.get(1).validPart - complexNumbers.get(0).validPart * complexNumbers.get(1).imagePart) /
-                (complexNumbers.get(1).validPart * complexNumbers.get(1).validPart + complexNumbers.get(1).imagePart * complexNumbers.get(1).imagePart);
-        ComplexNumber divide = new ComplexNumber(validPart, imagePart);
-        return divide;
+public class DivideComplexNumber implements Divide<ComplexNumber>{
+    @Override
+    public ComplexNumber divide(List<ComplexNumber> numbers) {
+        double validPart = (numbers.get(0).validPart * numbers.get(1).validPart + numbers.get(0).imagePart * numbers.get(1).imagePart) /
+                (numbers.get(1).validPart * numbers.get(1).validPart + numbers.get(1).imagePart * numbers.get(1).imagePart);
+        double imagePart = (numbers.get(0).imagePart * numbers.get(1).validPart - numbers.get(0).validPart * numbers.get(1).imagePart) /
+                (numbers.get(1).validPart * numbers.get(1).validPart + numbers.get(1).imagePart * numbers.get(1).imagePart);
+        return new ComplexNumber(validPart, imagePart);
     }
 }

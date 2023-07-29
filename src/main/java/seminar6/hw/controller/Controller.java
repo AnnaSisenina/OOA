@@ -7,97 +7,68 @@ import seminar6.hw.service.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Controller {
-    History<Calculation<? extends CalculationNumber>> history;
+public class Controller implements Calculable{
 
-    public Controller(History<Calculation<? extends CalculationNumber>> history) {
-        this.history = history;
-    }
-
-    public void showHistory() {
-        System.out.println(history.toString());
-    }
-
-    public void sumReal(List<RealNumber> numbers) {
+    @Override
+    public String sumReal(List<RealNumber> numbers) {
         SumRealNumber calculateSum = new SumRealNumber();
         RealNumber sum = calculateSum.sum(numbers);
-        System.out.println(sum.toString());
-        Calculation<RealNumber> calculation = new Calculation<>(numbers, sum.toString(), "Сложение");
-        history.addToHistory(calculation);
+        return sum.toString();
     }
-
-    public void sumComplex(List<ComplexNumber> numbers) {
+    @Override
+    public String sumComplex(List<ComplexNumber> numbers) {
         SumComplexNumber calculateSum = new SumComplexNumber();
-        ComplexNumber sum = calculateSum.sumComplexNumber(numbers);
-        System.out.println(sum.toString());
-        Calculation<ComplexNumber> calculation = new Calculation<>(numbers, sum.toString(), "Сложение");
-        history.addToHistory(calculation);
+        ComplexNumber sum = calculateSum.sum(numbers);
+        return sum.toString();
     }
-
-    public void sumRational(List<RationalNumber> numbers) {
+    @Override
+    public String sumRational(List<RationalNumber> numbers) {
         SumRationalNumber calculateSum = new SumRationalNumber();
-        RationalNumber sum = calculateSum.sumRationalNumber(numbers);
-        System.out.println(sum.toString());
-        Calculation<RationalNumber> calculation = new Calculation<>(numbers, sum.toString(), "Сложение");
-        history.addToHistory(calculation);
+        RationalNumber sum = calculateSum.sum(numbers);
+        return sum.toString();
     }
-
-    public void divideReal(List<RealNumber> numbers) {
+    @Override
+    public String divideReal(List<RealNumber> numbers) {
         DivideRealNumber calculateDivide = new DivideRealNumber();
         RealNumber divide = calculateDivide.divide(numbers);
-        System.out.println(divide);
-        Calculation <RealNumber> calculation = new Calculation<>(numbers, divide.toString(), "Деление");
-        history.addToHistory(calculation);
+        return divide.toString();
     }
-
-    public void divideComplex(List<ComplexNumber> numbers) {
+    @Override
+    public String divideComplex(List<ComplexNumber> numbers) {
         DivideComplexNumber calculateDivide = new DivideComplexNumber();
-        ComplexNumber divide = calculateDivide.divideComplex(numbers);
-        System.out.println(divide.toString());
-        Calculation<ComplexNumber> calculation = new Calculation<>(numbers, divide.toString(), "Деление");
-        history.addToHistory(calculation);
+        ComplexNumber divide = calculateDivide.divide(numbers);
+        return divide.toString();
     }
-
-    public void divideRatio(List<RationalNumber> numbers) {
+    @Override
+    public String divideRatio(List<RationalNumber> numbers) {
         DivideRationalNumber calculateDivide = new DivideRationalNumber();
-        RationalNumber divide = calculateDivide.divideRatio(numbers);
-        System.out.println(divide.toString());
-        Calculation<RationalNumber> calculation = new Calculation<>(numbers, divide.toString(), "Деление");
-        history.addToHistory(calculation);
+        RationalNumber divide = calculateDivide.divide(numbers);
+        return divide.toString();
     }
-
-    public void multiplyReal(List<RealNumber> numbers) {
+    @Override
+    public String multiplyReal(List<RealNumber> numbers) {
         MultiplyRealNumber calculateMultiply = new MultiplyRealNumber();
-        RealNumber multiply = calculateMultiply.multiplyRealNumber(numbers);
-        System.out.println(multiply);
-        Calculation<RealNumber> calculation = new Calculation<>(numbers, multiply.toString(), "Умножение");
-        history.addToHistory(calculation);
+        RealNumber multiply = calculateMultiply.multiply(numbers);
+        return multiply.toString();
     }
-
-    public void multiplyComplex(List<ComplexNumber> numbers) {
+    @Override
+    public String multiplyComplex(List<ComplexNumber> numbers) {
         MultiplyComplexNumber calculateMultiply = new MultiplyComplexNumber();
-        ComplexNumber multiply = calculateMultiply.multiplComplexNumber(numbers);
-        System.out.println(multiply.toString());
-        Calculation <ComplexNumber> calculation = new Calculation<>(numbers, multiply.toString(), "Умножение");
-        history.addToHistory(calculation);
+        ComplexNumber multiply = calculateMultiply.multiply(numbers);
+        return multiply.toString();
     }
-
-    public void multiplyRational(List<RationalNumber> numbers) {
+    @Override
+    public String multiplyRational(List<RationalNumber> numbers) {
         MultiplyRationalNumber calculateMultiply = new MultiplyRationalNumber();
-        RationalNumber multiply = calculateMultiply.multiplRatioNumber(numbers);
-        System.out.println(multiply.toString());
-        Calculation <RationalNumber> calculation = new Calculation<>(numbers, multiply.toString(), "Умножение");
-        history.addToHistory(calculation);
+        RationalNumber multiply = calculateMultiply.multiply(numbers);
+        return multiply.toString();
+    }
+    @Override
+    public String binaryConversion(RealNumber number) {
+        ConversionRealToBinary calculateBinaryConversion = new ConversionRealToBinary();
+        BinaryNumber binaryNumber = calculateBinaryConversion.binaryConversion(number);
+        return binaryNumber.toString();
     }
 
-    public void binaryConversion(RealNumber number) {
-        ConversionRealToBinary calculateBinaryConversion = new ConversionRealToBinary();
-        BinaryNumber binaryNumber = calculateBinaryConversion.BinaryConversion(number);
-        System.out.println(binaryNumber);
-        List<RealNumber> numbers = new ArrayList<>();
-        numbers.add(number);
-        Calculation <RealNumber> calculation = new Calculation<>(numbers, binaryNumber.toString(), "Перевод в бинарное");
-        history.addToHistory(calculation);
-    }
 
 }

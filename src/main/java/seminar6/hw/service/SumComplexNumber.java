@@ -4,11 +4,12 @@ import java.util.List;
 // Реализация принципа Single Responsibility Principle
 // Был общий класс CalculateSum, который содержал методы для сложения вещественных, рациональных и комплексных чисел.
 // Разделила его на три отдельных класса, каждый класс отвечает за сложение одного типа.
-public class SumComplexNumber implements Sum {
+public class SumComplexNumber implements Sum<ComplexNumber> {
 
-    public ComplexNumber sumComplexNumber(List<ComplexNumber> complexNumbers) {
+    @Override
+    public ComplexNumber sum(List<ComplexNumber> numbers) {
         ComplexNumber sum = new ComplexNumber(0.0, 0.0);
-        for (ComplexNumber complexNumber : complexNumbers) {
+        for (ComplexNumber complexNumber : numbers) {
             sum.validPart += complexNumber.validPart;
             sum.imagePart += complexNumber.imagePart;
         }
