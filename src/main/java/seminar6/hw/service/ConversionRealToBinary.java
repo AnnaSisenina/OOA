@@ -4,10 +4,11 @@ package seminar6.hw.service;
 // Был общий класс CalculateDivide, который содержал методы для деления вещественных, рациональных и комплексных чисел.
 // Разделила его на три отдельных класса, каждый класс отвечает за деление одного типа.
 
-public class ConversionRealToBinary implements Conversion{
+public class ConversionRealToBinary implements Conversion<RealNumber>{
 
-    public BinaryNumber BinaryConversion(RealNumber decimalNumber) {
-        return BinaryConversion(Double.toString(decimalNumber.number));
+    @Override
+    public BinaryNumber binaryConversion(RealNumber number) {
+        return BinaryConversion(Double.toString(number.number));
     }
     public BinaryNumber BinaryConversion(String decimalNumber) {
         String binaryNumber;
@@ -60,4 +61,6 @@ public class ConversionRealToBinary implements Conversion{
         binaryMantissa.reverse();
         return binaryMantissa.toString();
     }
+
+
 }
